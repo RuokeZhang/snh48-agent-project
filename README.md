@@ -1,45 +1,37 @@
 # SNH48 Multi-Agent Companion
 
-SNH48-themed multi-agent starter with tabbed single-turn chat (Next.js). Routes questions to specialized agents: data intel, history lookup, and mood companion.
+SNH48 主题的多 Agent 应援助手：提供多标签单轮聊天、数据分析、日记回顾与简易应援规划，强调情绪陪伴但不涉医疗诊断。
 
 ## Quick Start
 ```bash
-pnpm install   # or npm install
-pnpm dev       # or npm run dev
+# install
+npm install
+
+# dev
+npm run dev
 # open http://localhost:3000
+
+# build & start
+npm run build
+npm run start
 ```
 
-## Stack
-- Next.js + React (JavaScript)
-- Minimal API routes for agent routing
-- Local JSON datasets for members & timelines
-
-## Features
-- Tabbed chat UI: each tab = SNH48 sub-agent (情报官 / 历史官 / 心情助手 / 应援策划等示例) with single-turn replies.
-- Data情报官: simple Q&A/comparisons on公开成员数据（生日、队伍、基础应援示例等）.
-- 历史记录官: keyword + semantic search over本地时间线数据（总选/公演/应援事件），回答“某年某成员的重要事件”.
-- 情绪陪伴助手: 温和建议，常识+科普，明确“非专业医疗/心理诊断”声明.
-- Basic router: rule/keyword-based dispatch to best-fit agent via Next.js API.
-
-## Endpoints
-- `GET /api/health` — liveness check
-- `POST /api/chat` — `{ message, agentHint? }` → routes to sub-agent and returns reply
-- `GET /api/data/members` — sample members dataset
-- `GET /api/data/timeline` — sample events/timeline dataset
+## Features / Endpoints
+- Web UI (Next.js):
+  - Tabbed single-turn chat：成员情绪陪聊、行程/问答、应援建议等基础对话。
+  - Multi-agent router：按意图在信息问答 / 应援规划 / 记忆回顾等子 Agent 间分发。
+- AnalystAgent (SNH48 主题)：基于公开数据（出勤、公演、握手/生写信息）做轻量统计与可视化说明。
+- JournalHistorian Agent：对粉丝应援日记/观演记录做关键词+语义搜索，帮助回顾与 SNH48 相关记忆。
+- Privacy & Compliance：最小化存储个人行程/消费/情绪文本，提供删除机制；不提供医疗诊断或紧急求助。
 
 ## TODO
-- [MUST] Tabbed single-turn chat UI for SNH48 sub-agents (成员情报官/应援策划师/公演日程助理等).
-- [MUST] 数据情报官：公开成员数据驱动的问答与对比分析.
-- [MUST] 历史记录官：本地示例数据的关键词+语义检索，回答“某年某成员的重要事件”.
-- [MUST] 情绪陪伴助手：饭圈心情支持，附非专业声明.
-- [MUST] 基础多Agent编排：根据问题自动路由到情报官/历史官/情绪陪伴.
-- [OPTIONAL] 时间线可视化组件，联动历史检索高亮.
-- [OPTIONAL] 成员卡片视图（按成员/队伍过滤、标签、快捷对话入口）。
-- [OPTIONAL] 轻量应援计划建议（生日/活动节点，非商业化创意）。
-- [OPTIONAL] 收藏/书签回答并由历史官可检索。
-- [OPTIONAL] 多语言基础支持（中文主，附英文简答）。
-
-## Notes
-- 仅使用公开合规数据，避免隐私与版权风险。
-- 情绪类回答需重复强调非专业医疗，必要时建议寻求专业帮助。
-- 聚焦信息整理、情绪陪伴与文化科普，避免引导高强度消费。
+- [MUST] Next.js 多标签单轮聊天 UI（成员情绪陪聊、行程问答、应援建议）。
+- [MUST] SNH48 AnalystAgent：公开数据的基础洞察与可视化。
+- [MUST] JournalHistorian Agent：粉丝日记/观演记录的关键词+语义搜索。
+- [MUST] 简易多 Agent 路由（信息问答 / 应援规划 / 记忆回顾 / 情绪陪伴）。
+- [MUST] 隐私与合规：最小化存储+可删除；明确非医疗、非紧急求助。
+- [OPTIONAL] 情绪陪伴（Psychologist 风格但非专业咨询）。
+- [OPTIONAL] 活动/应援计划生成（按成员偏好与时间预算）。
+- [OPTIONAL] 数据可视化组件（公演参与、成员提及频率时间线等）。
+- [OPTIONAL] 中英混合问答支持。
+- [OPTIONAL] 周报型粉丝行为统计（关键词云、粗粒度情绪分布）。
